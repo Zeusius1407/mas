@@ -9,18 +9,19 @@ from typing import List, Dict
 # Configuration
 MODEL_PATH = "./models/mistral-7b"  # Path to your local Mistral model
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # Lightweight embedding model
-PDF_PATH = "large_document.pdf"
+PDF_PATH = "SwiggeProspectus.pdf"
 CHUNK_SIZE = 512  # Tokens per chunk
 SUMMARY_LENGTH = 200  # Target summary length in words
 
 # --- Step 1: Load Models ---
 def load_models():
     # Load Mistral for generation
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, local_files_only=True)
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_PATH,
         device_map="auto",
-        torch_dtype=torch.float16
+        torch_dtype=torch.float16,
+        local_files_only=True
     )
     
     # Load embedding model
