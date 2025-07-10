@@ -1,7 +1,8 @@
 def merge_model_parts(output_file, part_prefix, num_parts):
     with open(output_file, 'wb') as outfile:
-        for i in range(1, num_parts + 1):
-            part_file = f"{part_prefix}{i:03d}"  # e.g., "model.bin.001"
+        for i in range(97, num_parts + 97):
+            i = chr(i)
+            part_file = f"{part_prefix}a{i}"  # e.g., "model.bin.001"
             with open(part_file, 'rb') as infile:
                 outfile.write(infile.read())
     print(f"Merged {num_parts} parts into {output_file}")
