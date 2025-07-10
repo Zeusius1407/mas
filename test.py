@@ -6,7 +6,7 @@ from llama_cpp import Llama
 from sentence_transformers import SentenceTransformer
 
 # ---- Config ----
-MODEL_PATH = "./models/llama-2-7b.Q4_K_M.gguf"
+MODEL_PATH = "./models/mistral-model.bin"
 EMBED_MODEL = "all-MiniLM-L6-v2"  # Fast & good enough
 
 # ---- Load models ----
@@ -51,6 +51,8 @@ def generate_summary(chunks, query=None):
 Summary:"""
     output = llm(prompt, max_tokens=250)
     return output["choices"][0]["text"].strip()
+
+
 
 
 pdf_path = "SwiggyProspectus.pdf"
